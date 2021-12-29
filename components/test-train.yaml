@@ -1,0 +1,22 @@
+name: SplitTrainTest
+description: SplitTrainTest
+implementation:
+  container:
+    image: python:slim
+    command:
+    - sh
+    - -ec
+    - |
+      program_path=$(mktemp)
+      printf "%s" "$0" > "$program_path"
+      python3 -u "$program_path" "$@"
+    - |
+      def pass_locals():
+          return dict_func(locals())  # noqa: F821 TODO
+
+      import argparse
+      _parser = argparse.ArgumentParser(prog='SplitTrainTest', description='SplitTrainTest')
+      _parsed_args = vars(_parser.parse_args())
+
+      _outputs = SplitTrainTest(**_parsed_args)
+    args: []

@@ -5,7 +5,7 @@ on:
     paths:
     - 'components/*.py'
     branches:
-      - 'release'
+      - 'master'
 
 jobs:
   component-cicd:

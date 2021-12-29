@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  pull_request:
+    paths:
+    - 'components/*.py'
+    branches:
+      - 'master'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Checkout code
+        uses: actions/checkout@v2
+      -
+        name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+          cache-dependency-path: 'images/requirements.txt'
+      -
+        name: Install pip packages
+        run: pip install -r images/requirements.txt
+      -
+        name: Generate component Manifests
+        run: for f in components/*.py; do python"$f"; done
+      - 
+        name: Add and Commit
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'components'
+          default_author: github_actions
+          message: 'Added the manifests for components'
+      - 
+        name: Raise a PR
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: 'master'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "auto-pr"
+      - name: output-url
+        run: echo ${{steps.open-pr.outputs.pr_url}}
+      - name: output-number
+        run: echo ${{steps.open-pr.outputs.pr_number}}
+      - name: output-has-changed-files
+        run: echo ${{steps.open-pr.outputs.has_changed_files}}

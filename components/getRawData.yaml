@@ -1,0 +1,31 @@
+name: GetRawData
+description: GetRawData
+inputs:
+- {name: val, type: String, optional: true}
+implementation:
+  container:
+    image: python:slim
+    command:
+    - sh
+    - -ec
+    - |
+      program_path=$(mktemp)
+      printf "%s" "$0" > "$program_path"
+      python3 -u "$program_path" "$@"
+    - |
+      def pass_locals():
+          return dict_func(locals())  # noqa: F821 TODO
+
+      import argparse
+      _parser = argparse.ArgumentParser(prog='GetRawData', description='GetRawData')
+      _parser.add_argument("--val", dest="val", type=str, required=False, default=argparse.SUPPRESS)
+      _parsed_args = vars(_parser.parse_args())
+
+      _outputs = GetRawData(**_parsed_args)
+    args:
+    - if:
+        cond: {isPresent: val}
+        then:
+        - --val
+        - {inputValue: val}
+

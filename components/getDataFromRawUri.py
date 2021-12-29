@@ -12,4 +12,4 @@ def GetRawData(val):
     return data
    
 if __name__ == '__main__':
-    create_component_from_func(func=GetRawData,base_image='python:slim',output_component_file='getRawData.yaml')
+    create_component_from_func(func=GetRawData,base_image='python:slim',output_component_file='./components/getRawData.yaml')

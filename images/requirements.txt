@@ -1,1 +1,8 @@
 ### Install KFP components
+
+numpy 
+matplotlib 
+pandas 
+sklearn 
+kfp 
+requests

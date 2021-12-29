@@ -8,7 +8,7 @@ from kfp.components import create_component_from_func
 def GetRawData(val):
     import requests
     data = requests.get(val)
-    print("Extracted Data")
+    print("Extracted Raw Data")
     return data
    
 if __name__ == '__main__':

@@ -1,11 +1,11 @@
 name: ci
 
 on:
-  pull_request:
+  push:
     paths:
     - 'components/*.py'
     branches:
-      - 'master'
+      - 'release'
 
 jobs:
   component-cicd:

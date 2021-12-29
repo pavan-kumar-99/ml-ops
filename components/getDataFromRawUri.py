@@ -5,7 +5,7 @@ from kfp.components import create_component_from_func
 
 
 @components.create_component_from_func
-def GetRawData(val: str = 'https://raw.githubusercontent.com/srafay/Machine_Learning_A-Z/master/Part%202%20-%20Regression/Section%204%20-%20Simple%20Linear%20Regression/Salary_Data.csv') -> str:
+def GetRawData(val):
     import requests
     data = requests.get(val)
     print("Extracted Data")

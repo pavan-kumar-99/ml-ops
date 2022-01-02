@@ -6,3 +6,4 @@ pandas
 sklearn 
 kfp 
 requests
+sklearn

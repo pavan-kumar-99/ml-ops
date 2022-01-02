@@ -9,6 +9,7 @@ traintest_op = components.load_component_from_url(
 
 @components.create_component_from_func
 def TrainPlot():
+    from sklearn.metrics import f1_score, precision_score, recall_score, confusion_matrix, mean_squared_error, mean_absolute_error, explained_variance_score
     from sklearn.linear_model import LinearRegression
     regressor = LinearRegression()
     regressor.fit(X_train, y_train)

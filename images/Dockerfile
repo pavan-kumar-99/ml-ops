@@ -1,2 +1,3 @@
 FROM python:slim
-RUN pip3 install numpy matplotlib pandas sklearn kfp requests
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt

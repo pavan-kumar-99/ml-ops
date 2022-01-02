@@ -15,7 +15,7 @@ def SplitTrainTest():
     X = dataset.iloc[:, :-1].values
     y = dataset.iloc[:, 1].values
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 1/3, random_state = 0)
-    return X_train
+    return X_train, X_test, y_train, y_test
    
 if __name__ == '__main__':
     create_component_from_func(func=SplitTrainTest,base_image='python:slim',output_component_file='./components/test-train.yaml')

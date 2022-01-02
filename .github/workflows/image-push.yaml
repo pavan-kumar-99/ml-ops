@@ -2,8 +2,10 @@ name: ci
 
 on:
   push:
+    paths:
+    - 'images/*'
     branches:
-      - 'void'
+      - 'master'
 
 jobs:
   docker:

@@ -46,4 +46,4 @@ def TrainPlot():
     print(metrics)
    
 if __name__ == '__main__':
-    create_component_from_func(func=SplitTrainTest,base_image='python:slim',output_component_file='./components/train-plot.yaml')
+    create_component_from_func(func=TrainPlot,base_image='python:slim',output_component_file='./components/train-plot.yaml')
